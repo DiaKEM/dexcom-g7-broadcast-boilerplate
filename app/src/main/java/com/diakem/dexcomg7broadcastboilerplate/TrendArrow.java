@@ -1,7 +1,7 @@
 package com.diakem.dexcomg7broadcastboilerplate;
 
 /**
- * Smali alias: Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow
+ * Smali alias: Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;
  */
 public enum TrendArrow {
     FLAT("Flat");

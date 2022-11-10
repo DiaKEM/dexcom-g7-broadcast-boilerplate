@@ -1,7 +1,7 @@
 package com.diakem.dexcomg7broadcastboilerplate;
 
 /**
- * Smali alias: Lcom/dexcom/coresdk/g7appcore/txservice/models/SensorReading
+ * Smali alias: Lcom/dexcom/coresdk/g7appcore/txservice/models/SensorReading;
  */
 public class SensorReading {
     public GIU egvValue;
