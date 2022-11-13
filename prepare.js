@@ -51,4 +51,4 @@ const docBlock = `
 # @date ${(new Date()).toISOString()}
 `;
 
-fs.writeFileSync('./final-broadcasting.smali', docBlock + (replaceBroadcastInvocation(replaceLineNumbers(extract))));
+fs.writeFileSync('./final-broadcasting.smali', docBlock + (replaceBroadcastInvocation(replaceStaticReferences(replaceLineNumbers(extract)))));
