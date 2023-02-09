@@ -11,7 +11,8 @@ const replaceSet = {
   'Lcom/diakem/dexcomg7broadcastboilerplate/SensorReading;': 'Lcom/dexcom/coresdk/g7appcore/txservice/models/SensorReading;',
   'Lcom/diakem/dexcomg7broadcastboilerplate/GIU;': 'Lym/qj;',
   'Lcom/diakem/dexcomg7broadcastboilerplate/TUI;': 'Lym/kFw;',
-  'Lcom/diakem/dexcomg7broadcastboilerplate/TrendArrow;': 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;'
+  'Lcom/diakem/dexcomg7broadcastboilerplate/TrendArrow;': 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;',
+  'Lcom/diakem/dexcomg7broadcastboilerplate/AlgorithmState;': 'Lcom/dexcom/coresdk/transmitterG7/G7AlgorithmState;',
 };
 
 const replaceBroadcastInvocation = str => str.replaceAll(/^\s+:try_end_0$/gm, `
@@ -23,7 +24,7 @@ const replaceBroadcastInvocation = str => str.replaceAll(/^\s+:try_end_0$/gm, `
     iget-object v7, v7, Lym/GmR;->Iw:Lym/cLw;
     iget-object v8, v7, Lym/cLw;->vw:Lkotlinx/coroutines/CoroutineScope;
     check-cast v8, Lcom/dexcom/phoenix/G7CgmApplication;
-    invoke-virtual {v8, v0}, Lcom/dexcom/phoenix/G7CgmApplication;->sendBroadcast(Landroid/content/Intent;)V
+    invoke-virtual {v8, v1}, Lcom/dexcom/phoenix/G7CgmApplication;->sendBroadcast(Landroid/content/Intent;)V
     :try_end_0
 `);
 
@@ -34,6 +35,7 @@ const replaceMap = [
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/GIU;', replace: 'Lym/qj;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/TUI;', replace: 'Lym/kFw;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/TrendArrow;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;' },
+  { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/AlgorithmState;', replace: 'Lcom/dexcom/coresdk/transmitterG7/G7AlgorithmState;' },
 ];
 
 const replaceStaticReferences = str => replaceMap.reduce((acc, cur) => acc.replaceAll(cur.search, cur.replace), str);

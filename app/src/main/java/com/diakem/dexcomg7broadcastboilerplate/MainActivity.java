@@ -15,11 +15,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param serviceRecord
      */
-    public void broadcastToAAPS(TxServiceRecord serviceRecord)
-    {
+    public void broadcastToAAPS(TxServiceRecord serviceRecord) {
         try {
             // Check whether sensor is operational
             if (!serviceRecord.txCommState.name().equals("Nominal")) {
+                Log.d("DIAKEM", "Communication state is not nominal - EXIT");
                 return;
             }
 
@@ -33,14 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
             // Get and iterate over readings
             List<SensorReading> sensorReadings = serviceRecord.getSensorReadings();
-            for (int i = 0 ; i < sensorReadings.size() ; i++)
-            {
+            for (int i = 0; i < sensorReadings.size(); i++) {
                 // Create reading bundle
                 Bundle sensorReadingBundle = new Bundle();
                 SensorReading sensorReading = sensorReadings.get(i);
 
+                Log.d(
+                        "DIAKEM",
+                        "Timestamp: " + sensorReading.sensorReadingTimestamp.Iw + " | " +
+                            "Glucose value: " + sensorReading.egvValue.Iw + " | " +
+                            "Algorithm state: " + sensorReading.getAlgorithmState()
+                );
+
                 // Check for invalid value
-                if (sensorReading.egvValue.Iw == 4095) {
+                if (sensorReading.egvValue.Iw > 400) {
+                    Log.d("DIAKEM", "Glucose value is over 400 - EXIT");
                     continue;
                 }
 
@@ -56,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             // Put glucose values collected in main bundle
             mainIntent.putExtra("glucoseValues", mainBundle);
         } catch (Exception e) {
-            Log.e("DIAKEM_BROADCAST_LOG", e.getMessage());
+            Log.e("DIAKEM", e.getMessage());
         }
     }
 }

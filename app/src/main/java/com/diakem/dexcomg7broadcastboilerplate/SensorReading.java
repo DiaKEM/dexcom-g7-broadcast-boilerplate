@@ -8,4 +8,10 @@ public class SensorReading {
     public GIU predictiveEgv;
     public TUI sensorReadingTimestamp;
     public TrendArrow trendArrow;
+
+    public AlgorithmState algorithmState;
+
+    public AlgorithmState getAlgorithmState() {
+        return this.algorithmState;
+    }
 }
