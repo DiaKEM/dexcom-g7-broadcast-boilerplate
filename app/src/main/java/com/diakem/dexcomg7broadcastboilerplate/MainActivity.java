@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 SensorReading sensorReading = sensorReadings.get(i);
 
                 // Check for invalid value
-                if (sensorReading.egvValue.Iw == 4095) {
+                if (sensorReading.egvValue.Iw > 400) {
                     continue;
                 }
 
