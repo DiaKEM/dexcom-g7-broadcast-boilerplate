@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.diakem.dexcomg7broadcastboilerplate.mocks.SensorReading;
+import com.diakem.dexcomg7broadcastboilerplate.mocks.TxServiceRecord;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             // Check whether sensor is operational
             if (!serviceRecord.txCommState.name().equals("Nominal")) {
-                Log.d("DIAKEM", "Communication state is not nominal - EXIT");
+                Log.d("DIAKEM", "Communication state is " + serviceRecord.txCommState.name() + " instead of nominal - EXIT");
                 return;
             }
 
@@ -42,12 +45,20 @@ public class MainActivity extends AppCompatActivity {
                         "DIAKEM",
                         "Timestamp: " + sensorReading.sensorReadingTimestamp.Iw + " | " +
                             "Glucose value: " + sensorReading.egvValue.Iw + " | " +
+                            "Predictive value: " + sensorReading.predictiveEgv.Iw + " | " +
+                            "Adjusted predictive value: " + sensorReading.adjustedPredictiveEgvValue + " | " +
+                            "TrendArrow: " + sensorReading.trendArrow.name() + " | " +
+                            "Is backfilled?: " + sensorReading.isBackfilled + " | " +
+                            "Rate: " + sensorReading.rate + " | " +
+                            "Sensor state: " + sensorReading.getSensorState() + " | " +
+                            "Session start time: " + sensorReading.getSessionStartTime() + " | " +
+                            "SensorId: " + sensorReading.getTxSw() + " | " +
                             "Algorithm state: " + sensorReading.getAlgorithmState()
                 );
 
                 // Check for invalid value
                 if (sensorReading.egvValue.Iw > 400) {
-                    Log.d("DIAKEM", "Glucose value is over 400 - EXIT");
+                    Log.d("DIAKEM", "Glucose value exceeds 400 - SKIP");
                     continue;
                 }
 
