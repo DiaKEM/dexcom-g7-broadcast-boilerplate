@@ -21,4 +21,5 @@ After debugging the sensor reading you can just access the interfaces and can ad
 ./build-apk-and-disassemble.sh
 ```
 
-This command will build an apk and generate the `.smali` ressources in directory `smali-src`.
+This command will build an ´APK´ and generate the `.smali` ressources in directory `smali-src`. 
+Check the file ´final-broadcasting.smali´ for a ´.smali´ representation of ´MainActivity->broadcastToAAPS()´.

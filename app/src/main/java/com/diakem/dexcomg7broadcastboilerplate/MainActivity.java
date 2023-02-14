@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.diakem.dexcomg7broadcastboilerplate.mocks.SensorReading;
+import com.diakem.dexcomg7broadcastboilerplate.mocks.TxServiceRecord;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param serviceRecord
      */
-    public void broadcastToAAPS(TxServiceRecord serviceRecord)
-    {
+    public void broadcastToAAPS(TxServiceRecord serviceRecord) {
         try {
             // Check whether sensor is operational
             if (!serviceRecord.txCommState.name().equals("Nominal")) {
+                Log.d("DIAKEM", "Communication state is " + serviceRecord.txCommState.name() + " instead of nominal - EXIT");
                 return;
             }
 
@@ -33,14 +36,29 @@ public class MainActivity extends AppCompatActivity {
 
             // Get and iterate over readings
             List<SensorReading> sensorReadings = serviceRecord.getSensorReadings();
-            for (int i = 0 ; i < sensorReadings.size() ; i++)
-            {
+            for (int i = 0; i < sensorReadings.size(); i++) {
                 // Create reading bundle
                 Bundle sensorReadingBundle = new Bundle();
                 SensorReading sensorReading = sensorReadings.get(i);
 
+                Log.d(
+                        "DIAKEM",
+                        "Timestamp: " + sensorReading.sensorReadingTimestamp.Iw + " | " +
+                            "Glucose value: " + sensorReading.egvValue.Iw + " | " +
+                            "Predictive value: " + sensorReading.predictiveEgv.Iw + " | " +
+                            "Adjusted predictive value: " + sensorReading.adjustedPredictiveEgvValue + " | " +
+                            "TrendArrow: " + sensorReading.trendArrow.name() + " | " +
+                            "Is backfilled?: " + sensorReading.isBackfilled + " | " +
+                            "Rate: " + sensorReading.rate + " | " +
+                            "Sensor state: " + sensorReading.getSensorState() + " | " +
+                            "Session start time: " + sensorReading.getSessionStartTime() + " | " +
+                            "SensorId: " + sensorReading.getTxSw() + " | " +
+                            "Algorithm state: " + sensorReading.getAlgorithmState()
+                );
+
                 // Check for invalid value
                 if (sensorReading.egvValue.Iw > 400) {
+                    Log.d("DIAKEM", "Glucose value exceeds 400 - SKIP");
                     continue;
                 }
 
@@ -56,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             // Put glucose values collected in main bundle
             mainIntent.putExtra("glucoseValues", mainBundle);
         } catch (Exception e) {
-            Log.e("DIAKEM_BROADCAST_LOG", e.getMessage());
+            Log.e("DIAKEM", e.getMessage());
         }
     }
 }

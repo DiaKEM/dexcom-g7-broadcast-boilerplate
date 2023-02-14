@@ -1,4 +1,4 @@
-package com.diakem.dexcomg7broadcastboilerplate;
+package com.diakem.dexcomg7broadcastboilerplate.mocks;
 
 import java.util.ArrayList;
 import java.util.List;

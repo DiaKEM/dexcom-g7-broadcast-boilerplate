@@ -1,4 +1,4 @@
-package com.diakem.dexcomg7broadcastboilerplate;
+package com.diakem.dexcomg7broadcastboilerplate.mocks;
 
 /**
  * Smali alias: Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;
