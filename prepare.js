@@ -6,8 +6,10 @@ const replaceMap = [
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/TxCommState;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TxCommState;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/TxServiceRecord;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TxServiceRecord;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/SensorReading;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/SensorReading;' },
-  { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/GIU;', replace: 'Lym/qj;' },
-  { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/TUI;', replace: 'Lym/kFw;' },
+  { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/GIU;', replace: 'Lkz/ᫍࡪ;' },
+  { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/TUI;', replace: 'Lkz/ࡦ࡭;' },
+  { search: '->Iw:I', replace: '->࡬:I' },
+  { search: '->Iw:J', replace: '->ᪿ:J' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/TrendArrow;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/TrendArrow;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/AlgorithmState;', replace: 'Lcom/dexcom/coresdk/transmitterG7/G7AlgorithmState;' },
   { search: 'Lcom/diakem/dexcomg7broadcastboilerplate/mocks/SensorState;', replace: 'Lcom/dexcom/coresdk/g7appcore/txservice/models/SensorState;' },
@@ -36,9 +38,9 @@ const replaceBroadcastInvocation = str => {
     iget-object v7, p0, Lcom/dexcom/coresdk/g7appcore/persistence/repositories/TxServiceRoomRepository;->listener:Lcom/dexcom/coresdk/dexappkit/persistence/eventmonitor/PersistenceEventListener;
     check-cast v7, Lcom/dexcom/coresdk/dexappkit/persistence/eventmonitor/PersistenceEventMonitor;
     iget-object v7, v7, Lcom/dexcom/coresdk/dexappkit/persistence/eventmonitor/PersistenceEventMonitor;->listener:Lcom/dexcom/coresdk/dexappkit/persistence/eventmonitor/PersistenceEventMonitor$PersistenceEventMonitorListener;
-    check-cast v7, Lym/GmR;
-    iget-object v7, v7, Lym/GmR;->Iw:Lym/cLw;
-    iget-object v8, v7, Lym/cLw;->vw:Lkotlinx/coroutines/CoroutineScope;
+    check-cast v7, Lkz/ࡰ࡯ᫌ;
+    iget-object v7, v7, Lkz/ࡰ࡯ᫌ;->᫐:Lcom/dexcom/dexcomone/utils/alerts/AlertEngineLiveDataHub;
+    iget-object v8, v7, Lcom/dexcom/dexcomone/utils/alerts/AlertEngineLiveDataHub;->appScope:Lkotlinx/coroutines/CoroutineScope;
     check-cast v8, Lcom/dexcom/phoenix/G7CgmApplication;
     invoke-virtual {v8, ${intentVariable[1]}}, Lcom/dexcom/phoenix/G7CgmApplication;->sendBroadcast(Landroid/content/Intent;)V
     :try_end_0
